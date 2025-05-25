@@ -826,56 +826,7 @@
         // Resume download functionality
         document.getElementById('downloadResume').addEventListener('click', function(e) {
             e.preventDefault();
-            
-            // Create resume content based on the provided data
-            const resumeContent = `
-MICHAL FOGEL - FULL STACK DEVELOPER
-Email: m0583260035@gmail.com | GitHub: https://github.com/MichalFog | Phone: 0583260035
-
-PROFILE
-Full Stack Developer with practical experience in developing complex projects.
-Quick to grasp and work with advanced code, consistently delivering high-quality results.
-Skilled in writing clean code and contributing to open-source initiatives.
-Self-learner with strong motivation, curiosity, and a passion for growth in tech.
-
-SKILLS
-Backend: C#, Java, Python, Node.js
-Frontend: React, Angular, TypeScript, JavaScript, HTML, CSS
-Databases: SQL Server, PostgreSQL, MongoDB
-Version Control & Task Management: Git, GitHub, Bitbucket, Jira
-Cloud & DevOps: AWS, Docker
-Operating Systems: Windows, Linux, Unix
-
-PROJECTS
-
-2025 | Parking Management System Development
-- Developed a login system with user authentication and authorization
-- Integrated Google Maps API to accurately locate users
-- Designed database tables, established relationships, and connected the DB to the backend using Entity Framework
-
-2025 | Recipe Management Web Application
-- Tech Stack: React, MongoDB, Node.js
-- Implemented a login system using JWT for secure authentication
-- Used Redux Toolkit for efficient state management
-- Built an advanced user interface with Material UI (MUI)
-- Deployed the project on AWS
-- Integrated AI tools to suggest new recipes to users
-- Created dynamic forms using React Hook Form
-
-2025 | Customer Inquiry Management System
-- Tech Stack: Pure Java, Swing, Git, Bitbucket
-- Developed APIs with read/write operations from files
-- Applied OOP principles and design patterns such as Singleton
-- Worked in a team environment following Agile methodology
-- Utilized threads to manage API requests
-- Developed a thread for running nightly system tests
-
-EDUCATION
-2023 - 2025 | Software engineering diploma, The College of Management, GPA 96
-
-LANGUAGES
-English: Proficient | Hebrew: Native
-            `;
+                        
             
             // Create and download the resume as a text file
             const blob = new Blob([resumeContent], { type: 'text/plain' });
