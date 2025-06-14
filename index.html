@@ -237,32 +237,44 @@
             });
         });
 
-        // Resume download functionality
-        document.getElementById('downloadResume').addEventListener('click', function(e) {
-            e.preventDefault();
-                        
-            
-            // Create and download the resume as a text file
-            const blob = new Blob([resumeContent], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Michal_Fogel_Resume.txt';
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-            document.body.removeChild(a);
-            
-            // Show feedback
-            const button = this;
-            const originalText = button.innerHTML;
-            button.innerHTML = '✅ Downloaded!';
-            button.style.background = '#654321';
-            
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.style.background = '#8B4513';
-            }, 2000);
+        // Intersection Observer for animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.section-title, .about-content p, .skill-tag, .project-card, .experience-item, .education-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loading');
+            if (loader) {
+                loader.style.display = 'none';
+            }
+        });
+
+        // Add hover effects
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseover', function(e) {
+                const x = e.pageX - this.offsetLeft;
+                const y = e.pageY - this.offsetTop;
+                
+                this.style.setProperty('--x', `${x}px`);
+                this.style.setProperty('--y', `${y}px`);
+            });
         });
     </script>
 </body>

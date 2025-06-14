@@ -92,13 +92,13 @@ body {
 
 /* Hero Section */
 .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
     margin-top: 80px;
     min-height: 90vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
-    position: relative;
-    overflow: hidden;
 }
 
 .hero::before {
@@ -108,22 +108,51 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%2364ffda" stop-opacity="0.1"/><stop offset="100%" stop-color="%2364ffda" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(100, 255, 218, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(100, 255, 218, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 70%, rgba(100, 255, 218, 0.15) 0%, transparent 50%);
     animation: float 20s ease-in-out infinite;
+    z-index: 0;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 40%, rgba(100, 255, 218, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(100, 255, 218, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(100, 255, 218, 0.1) 0%, transparent 40%);
+    animation: float 15s ease-in-out infinite reverse;
+    z-index: 0;
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(10px, 10px) rotate(5deg);
+    }
+    50% {
+        transform: translate(0, 20px) rotate(0deg);
+    }
+    75% {
+        transform: translate(-10px, 10px) rotate(-5deg);
+    }
 }
 
 .hero-content {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 4rem;
     align-items: center;
-    position: relative;
-    z-index: 2;
 }
 
 .profile-photo {
@@ -205,10 +234,10 @@ section:nth-child(odd) {
     text-align: center;
     margin-bottom: 4rem;
     position: relative;
-    animation: fadeInUp 1s ease-out;
+    animation: fadeIn 1s ease-out;
 }
 
-@keyframes fadeInUp {
+@keyframes fadeIn {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
@@ -242,7 +271,7 @@ section:nth-child(odd) {
     margin-bottom: 2rem;
     color: #ccd6f6;
     line-height: 1.8;
-    animation: fadeInUp 1s ease-out 0.2s both;
+    animation: slideInUp 1s ease-out;
 }
 
 .skills {
@@ -272,12 +301,13 @@ section:nth-child(odd) {
     font-size: 0.9rem;
     transition: all 0.3s ease;
     border: 1px solid rgba(100, 255, 218, 0.2);
+    animation: scaleIn 0.5s ease-out;
 }
 
 .skill-tag:hover {
     background: rgba(100, 255, 218, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(100, 255, 218, 0.2);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
 }
 
 /* Experience Section */
@@ -297,11 +327,12 @@ section:nth-child(odd) {
     box-shadow: 0 4px 20px rgba(10, 25, 47, 0.2);
     transition: all 0.3s ease;
     border: 1px solid rgba(100, 255, 218, 0.1);
+    animation: slideInUp 1s ease-out;
 }
 
 .experience-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(100, 255, 218, 0.1);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(10, 25, 47, 0.2);
     border-color: #64ffda;
 }
 
@@ -346,11 +377,12 @@ section:nth-child(odd) {
     box-shadow: 0 4px 20px rgba(10, 25, 47, 0.2);
     transition: all 0.3s ease;
     border: 1px solid rgba(100, 255, 218, 0.1);
+    animation: slideInUp 1s ease-out;
 }
 
 .education-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(100, 255, 218, 0.1);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(10, 25, 47, 0.2);
     border-color: #64ffda;
 }
 
@@ -411,12 +443,13 @@ section:nth-child(odd) {
     font-size: 0.9rem;
     transition: all 0.3s ease;
     border: 1px solid rgba(100, 255, 218, 0.2);
+    animation: scaleIn 0.5s ease-out;
 }
 
 .tech-tag:hover {
     background: rgba(100, 255, 218, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(100, 255, 218, 0.2);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
 }
 
 /* Resume Section Updates */
@@ -519,11 +552,12 @@ section:nth-child(odd) {
     box-shadow: 0 4px 20px rgba(10, 25, 47, 0.2);
     transition: all 0.3s ease;
     border: 1px solid rgba(100, 255, 218, 0.1);
+    animation: slideInUp 1s ease-out;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(100, 255, 218, 0.1);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(10, 25, 47, 0.2);
     border-color: #64ffda;
 }
 
@@ -584,6 +618,26 @@ section:nth-child(odd) {
     border: none;
     cursor: pointer;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::after {
+    width: 300px;
+    height: 300px;
 }
 
 .btn-primary {
@@ -660,11 +714,22 @@ section:nth-child(odd) {
     text-decoration: none;
     margin: 0 1rem;
     transition: all 0.3s ease;
+    position: relative;
 }
 
-.social-links a:hover {
-    color: #ccd6f6;
-    transform: translateY(-3px);
+.social-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #64ffda;
+    transition: width 0.3s ease;
+}
+
+.social-links a:hover::after {
+    width: 100%;
 }
 
 /* Responsive Design */
@@ -722,3 +787,268 @@ section:nth-child(odd) {
     color: #64ffda;
     transform: translateY(-2px);
 }
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Apply animations to elements */
+.hero-title {
+    animation: slideInRight 1s ease-out;
+}
+
+.hero-subtitle {
+    animation: slideInRight 1s ease-out 0.2s both;
+}
+
+.hero-description {
+    animation: slideInRight 1s ease-out 0.4s both;
+}
+
+.section-title {
+    animation: fadeIn 1s ease-out;
+}
+
+.about-content p {
+    animation: slideInUp 1s ease-out;
+}
+
+.skill-tag {
+    animation: scaleIn 0.5s ease-out;
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+}
+
+.project-card {
+    animation: slideInUp 1s ease-out;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(10, 25, 47, 0.2);
+}
+
+.tech-tag {
+    animation: scaleIn 0.5s ease-out;
+    transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+}
+
+.btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #64ffda;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::before {
+    width: 100%;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Add hover effect to social links */
+.social-links a {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.social-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #64ffda;
+    transition: width 0.3s ease;
+}
+
+.social-links a:hover::after {
+    width: 100%;
+}
+
+/* Add loading animation */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a192f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 1s ease-out 2s forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* Add parallax effect to hero section */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%2364ffda" stop-opacity="0.1"/><stop offset="100%" stop-color="%2364ffda" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+    animation: float 20s ease-in-out infinite;
+    transform: translateZ(-1px) scale(2);
+    z-index: -1;
+}
+
+/* Base animations */
+.section-title,
+.about-content p,
+.skill-tag,
+.project-card,
+.experience-item,
+.education-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+/* Animated state */
+.section-title.animate,
+.about-content p.animate,
+.skill-tag.animate,
+.project-card.animate,
+.experience-item.animate,
+.education-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger animations for skill tags */
+.skill-tag {
+    transition-delay: calc(var(--i, 0) * 0.1s);
+}
+
+/* Add stagger effect to skill tags */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.skill-tag {
+    --i: 0;
+}
+
+.skills-grid .skill-tag:nth-child(1) { --i: 1; }
+.skills-grid .skill-tag:nth-child(2) { --i: 2; }
+.skills-grid .skill-tag:nth-child(3) { --i: 3; }
+.skills-grid .skill-tag:nth-child(4) { --i: 4; }
+.skills-grid .skill-tag:nth-child(5) { --i: 5; }
+.skills-grid .skill-tag:nth-child(6) { --i: 6; }
+.skills-grid .skill-tag:nth-child(7) { --i: 7; }
+.skills-grid .skill-tag:nth-child(8) { --i: 8; }
+.skills-grid .skill-tag:nth-child(9) { --i: 9; }
+.skills-grid .skill-tag:nth-child(10) { --i: 10; }
+.skills-grid .skill-tag:nth-child(11) { --i: 11; }
+.skills-grid .skill-tag:nth-child(12) { --i: 12; }
+.skills-grid .skill-tag:nth-child(13) { --i: 13; }
+.skills-grid .skill-tag:nth-child(14) { --i: 14; }
+.skills-grid .skill-tag:nth-child(15) { --i: 15; }
